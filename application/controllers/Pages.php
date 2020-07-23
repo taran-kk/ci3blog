@@ -6,7 +6,7 @@ class Pages extends CI_Controller {
 			if(!file_exists(APPPATH.'views/pages/'.$page.'.php')){
 				show_404();
 			}
-			// Loads the navbar
+			// Loads the navbar, page and footer
 			$this->load->view('templates/navbar');
 			$this->load->view('pages/'.$page);
 			$this->load->view('templates/footer');
