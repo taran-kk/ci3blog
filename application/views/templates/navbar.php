@@ -21,21 +21,21 @@
 
 		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		    <ul class="navbar-nav mr-auto">
-		      <li class="nav-item active">
+		      <li class="nav-item">
 		        <a class="nav-link" href="<?php echo base_url();?>">Home <span class="sr-only">(current)</span></a>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Articles</a>
+		        <a class="nav-link" href="<?php echo base_url();?>articles/index/">Articles</a>
 		      </li>
 		      <li class="nav-item dropdown">
 		        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		          Categories
 		        </a>
 		        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-		          <a class="dropdown-item" href="#">Action</a>
-		          <a class="dropdown-item" href="#">Another action</a>
+		          <a class="dropdown-item" href="#">Category1</a>
+		          <a class="dropdown-item" href="#">Category2</a>
 		          <div class="dropdown-divider"></div>
-		          <a class="dropdown-item" href="#">Something else here</a>
+		          <a class="dropdown-item" href="#">Category3</a>
 		        </div>
 		      </li>
 		    </ul>
@@ -44,19 +44,19 @@
 			  <?php if(!$this->session->userdata('logged_in'))
 			  { ?>
 				<li class="nav-item">
-					<a style="margin: 0 8px;" class="nav-link btn btn-primary" href="<?php echo base_url(); ?>users/login">Login</a>
+					<a style="margin: 0 8px;" class="nav-link btn btn-primary text-white" href="<?php echo base_url(); ?>users/login">Login</a>
 				</li>
 				<li class="nav-item">
-					<a style="margin: 0 8px;" class="nav-link btn btn-outline-secondary" href="<?php echo base_url(); ?>users/register">Register</a>
+					<a style="margin: 0 8px;" class="nav-link btn btn-outline-secondary bg-light text-info" href="<?php echo base_url(); ?>users/register">Register</a>
 				</li>
 			  <?php
 			  } ?>
 
 			  <?php if($this->session->userdata('logged_in'))
 			  { ?>
-				<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>posts/create">Create Post</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>categories/create">Create Category</a></li>
-				<li class="nav-item"><a class="nav-link" href="<?php echo base_url(); ?>users/logout">Logout</a></li>
+				<li class="nav-item"><a class="nav-link btn btn-primary text-white" style="margin: 0 8px;" href="<?php echo base_url(); ?>articles/create">Create Article</a></li>
+				<li class="nav-item"><a class="nav-link btn btn-primary text-white" style="margin: 0 8px;" href="<?php echo base_url(); ?>categories/create">Create Category</a></li>
+				<li class="nav-item"><a class="nav-link btn btn-warning" style="margin: 0 8px;" href="<?php echo base_url(); ?>users/logout">Logout</a></li>
 			  <?php
 			  } ?>
 			</ul>
@@ -85,6 +85,10 @@
 
       <?php if($this->session->flashdata('logout_successful')){
         echo "<p class='alert alert-success'>".$this->session->flashdata('logout_successful')."</p>";
+      } ?>
+
+	  <?php if($this->session->flashdata('article_created')){
+        echo "<p class='alert alert-success'>".$this->session->flashdata('article_created')."</p>";
       } ?>
  	</div>
 

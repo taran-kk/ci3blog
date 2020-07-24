@@ -62,7 +62,7 @@
 						$this->session->set_userdata($user_data);
 
 						$this->session->set_flashdata('user_login_successful', 'Login Successful');
-						redirect('posts');
+						redirect('articles/index');
 				} else {
 						$this->session->set_flashdata('login_unsuccessful', 'Login Failed! Try Again');
 						redirect('users/login');
