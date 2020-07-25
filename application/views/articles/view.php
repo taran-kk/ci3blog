@@ -35,11 +35,12 @@
 			</div>
   		<?php endif; ?>
   		<hr>
-  		<h3>Comments</h3>
+  		<h3 class="text-center">Comments</h3><hr style="width:20%;">
   		<?php if($comments) : ?>
   			<?php foreach($comments as $comment) : ?>
   				<div class="well">
-  					<h5><?php echo $comment['body']; ?> [by <strong><?php echo $comment['name']; ?></strong>]</h5>
+  					<p> <i style="margin:2%;"><?php echo $comment['body'];  ?></i> <small style="width:90%; margin-left:10%;" class="comment-date">[by <strong><?php echo $comment['name']; ?></strong>]</small></p><hr style="width:90%;">
+
   				</div>
   			<?php endforeach; ?>
   		<?php else : ?>
@@ -81,7 +82,13 @@
 		.article-date{
 			background-color: rgba(100, 149, 237, 0.15);
 			padding:0.5%;
-			display:block;
+			display: block;
+		}
+
+		.comment-date{
+			background-color: rgba(100, 149, 237, 0.15);
+			padding:0.5%;
+			display: inline-block;
 		}
 
 		.article-body{
