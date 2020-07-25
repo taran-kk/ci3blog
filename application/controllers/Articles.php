@@ -45,9 +45,9 @@ class Articles extends CI_controller {
 			// Sets the image upload requirements/rules
 			$config['upload_path'] = './assets/images/posts';
 			$config['allowed_types'] = 'gif|jpg|png';
-			$config['max_size'] = '2048';
-			$config['max_width'] = '2000';
-			$config['max_height'] = '2000';
+			$config['max_size'] = '20000';
+			$config['max_width'] = '20000';
+			$config['max_height'] = '20000';
 
 			$this->load->library('upload', $config);
 
@@ -69,6 +69,73 @@ class Articles extends CI_controller {
 			redirect('articles/index');
 		}
 
+	}
+
+	public function view($slug = NULL){
+		$data['post'] = $this->post_model->get_articles($slug);
+		$post_id = $data['post']['id'];
+		$data['comments'] = $this->comments_model->get_comments($post_id);
+
+		if(empty($data['post'])){
+			show_404();
+		}
+
+		$data['title'] = $data['post']['title'];
+
+		$this->load->view('templates/navbar');
+		$this->load->view('articles/view', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function delete($id){
+		// check login
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+		}
+
+		$this->post_model->delete_article($id);
+		// set Message
+		$this->session->set_flashdata('article_deleted' ,'Article Deleted Successfully!');
+		redirect('articles/index/');
+	}
+
+	public function edit($slug){
+  		// Check login
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+		}
+
+		$data['post'] = $this->post_model->get_articles($slug);
+  		$user_id = $data['post']['user_id'];
+
+		// Check user
+		if( $this->session->userdata('user_id') != $user_id ){
+			redirect('articles/index/');
+		}
+
+		$data['categories'] = $this->post_model->get_categories();
+
+		if(empty($data['post'])){
+			show_404();
+		}
+
+		$data['title'] = 'Edit Post';
+
+		$this->load->view('templates/navbar');
+		$this->load->view('articles/edit', $data);
+		$this->load->view('templates/footer');
+
+	}
+
+	public function update(){
+	// check login
+		if(!$this->session->userdata('logged_in')){
+			redirect('users/login');
+		}
+		$this->post_model->update();
+		// set Message
+		$this->session->set_flashdata('article_updated' ,'Article Updated!');
+		redirect('articles/index');
 	}
 }
 
