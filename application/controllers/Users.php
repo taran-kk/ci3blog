@@ -26,7 +26,7 @@
 				$this->session->set_flashdata('user_added', 'Registration Successful!');
 
 				// Send user to the articles controller
-				redirect('articles');
+				redirect('users/login');
 			}
 		}
 
@@ -62,6 +62,12 @@
 						$this->session->set_userdata($user_data);
 
 						$this->session->set_flashdata('user_login_successful', 'Login Successful');
+						if ($this->agent->is_mobile()){
+							$this->session->set_flashdata('user_mobile', 'Use a Dektop Browser to access Custom Shop');
+						}
+						else {
+						    $this->session->set_flashdata('user_desk', 'Access Shop from Navbar for Custom Merch');
+						}
 						redirect('articles/index');
 				} else {
 						$this->session->set_flashdata('login_unsuccessful', 'Login Failed! Try Again');

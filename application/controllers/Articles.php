@@ -9,8 +9,8 @@ class Articles extends CI_controller {
     $config['uri_segment'] = 3;
     $config['attributes'] = array('class' => 'pagination-link');
 
-  // init pagination
-   $this->pagination->initialize($config);
+    // init pagination
+    $this->pagination->initialize($config);
 
     $data['posts'] = $this->post_model->get_articles(FALSE , $config['per_page'] ,$offset );
 
@@ -43,7 +43,7 @@ class Articles extends CI_controller {
 			$this->load->view('templates/footer');
 		} else {
 			// Sets the image upload requirements/rules
-			$config['upload_path'] = './assets/images/posts';
+			$config['upload_path'] = "<?php echo base_url(); ?>/assets/images/posts/";
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size'] = '20000';
 			$config['max_width'] = '20000';
@@ -110,7 +110,7 @@ class Articles extends CI_controller {
 
 		// Check user
 		if( $this->session->userdata('user_id') != $user_id ){
-			redirect('articles/index/');
+			redirect('articles/index');
 		}
 
 		$data['categories'] = $this->post_model->get_categories();
@@ -128,15 +128,16 @@ class Articles extends CI_controller {
 	}
 
 	public function update(){
-	// check login
-		if(!$this->session->userdata('logged_in')){
-			redirect('users/login');
-		}
-		$this->post_model->update();
-		// set Message
-		$this->session->set_flashdata('article_updated' ,'Article Updated!');
-		redirect('articles/index');
-	}
+      // check login
+      if(!$this->session->userdata('logged_in')){
+        redirect('users/login');
+      }
+
+      $this->post_model->update();
+      // set Message
+      $this->session->set_flashdata('post_updated' ,'Your post has been updated');
+      redirect('articles/index');
+    }
 }
 
 

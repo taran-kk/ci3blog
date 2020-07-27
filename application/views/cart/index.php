@@ -1,6 +1,6 @@
 <?php
 //index.php
-$connect = mysqli_connect("localhost", "root", "mysql", "db1712354");
+$connect = mysqli_connect("localhost", "1712354", "taran1920", "db1712354");
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,7 +33,7 @@ $connect = mysqli_connect("localhost", "root", "mysql", "db1712354");
 	 <body class="container">
 		<br>
 	    <div>
-		    <h3 align="center">Custom Merch Shop</h3><hr style="width:90%"> <br />
+		    <h3 align="center">Custom Merch Shop</h3><hr style="width:90%; margin:0;"> <br />
 		    <div class="table-responsive">
 			<table class="table">
 			<div class="row" style="margin:1%;">
@@ -46,10 +46,10 @@ $connect = mysqli_connect("localhost", "root", "mysql", "db1712354");
 					{
 			   ?>
 				<div class="col-md-2" style=" background-color: white; padding:16px; cursor:move" align="center">
-					 <img style="width:90%" src="<?php echo base_url()?>assets/images/shop/<?php echo $row["image"]; ?>" data-id="<?php echo $row['id']; ?>" data-name="<?php echo $row['name']; ?>" data-price="<?php echo $row['price']; ?>" class="img-responsive product_drag" />
-					 <hr>
-					 <h6 class="text-center"><?php echo $row["name"]; ?></h6> <hr>
-					 <span class="text-danger align-bottom">$ <?php echo $row["price"]; ?></span>
+					 <img style="width:90%" src="https://mi-linux.wlv.ac.uk/~1712354/ci3blog//assets/images/Shop/<?php echo $row["image"]; ?>" data-id="<?php echo $row['id']; ?>" data-name="<?php echo $row['name']; ?>" data-price="<?php echo $row['price']; ?>" class="img-responsive product_drag" />
+					 <hr style="margin:0;">
+					 <small class="text-center text-small"><?php echo $row["name"]; ?></small><br>
+					 <span class="text-danger align-bottom">£ <?php echo $row["price"]; ?></span>
 				</div>
 
 		   <?php
@@ -64,7 +64,7 @@ $connect = mysqli_connect("localhost", "root", "mysql", "db1712354");
 		   <div align="center">
 				<div class="product_drag_area">Drag & Drop Merch Here</div> <br>
 		   </div>
-		   <div id="dragable_product_order">
+		   <div id="dragable_product_order" class="container">
 		   </div>
 		  </div>
 		  <br>
@@ -93,7 +93,7 @@ $(document).ready(function(data){
 		  var price = e.originalEvent.dataTransfer.getData('price');
 		  var action = "add";
 		  $.ajax({
-			   url:"http://localhost/action.php",
+			   url:"https://mi-linux.wlv.ac.uk/~1712354/ci3blog/action.php",
 			   method:"POST",
 			   data:{id:id, name:name, price:price, action:action},
 			   success:function(data){
@@ -107,7 +107,7 @@ $(document).ready(function(data){
 			   var id = $(this).attr("id");
 			   var action="delete";
 			   $.ajax({
-					url:"http://localhost/action.php",
+					url:"https://mi-linux.wlv.ac.uk/~1712354/ci3blog/action.php",
 					method:"POST",
 					data:{id:id, action:action},
 					success:function(data){

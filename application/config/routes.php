@@ -7,13 +7,13 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['(:any)'] = 'pages/view/';
 
-$route['articles'] = 'articles/index';
 $route['articles/index'] = 'articles/index';
 $route['articles/create'] = 'articles/create';
 $route['articles/(:any)'] = 'articles/view/$1';
-$route['articles/create'] = 'articles/create';
-$route['articles/update'] = 'articles/update';
 
 $route['categories'] = 'categories/index';
 $route['categories/create'] = 'categories/create';
 $route['categories/posts/(:any)'] = 'categories/posts/$1';
+
+$route['comments'] = 'comments/index';
+$route['comments/create'] = 'comments/create';

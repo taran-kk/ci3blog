@@ -17,10 +17,10 @@
 	  			<div class="col-md-6 offset-md-3">
 	  				<h1 class="text-center">Login</h1>
 	  				<div class="form-group">
-	  					<input type="text" name="username" class="form-control" placeholder="Enter Username" required>
+	  					<input type="text" value="<?php echo set_value('username') ?>" name="username" class="form-control" placeholder="Enter Username" required>
 	  				</div>
 	  				<div class="form-group">
-	  					<input type="password" name="password" class="form-control" placeholder="Enter Password" required>
+	  					<input type="password" value="<?php echo set_value('password') ?>" name="password" class="form-control" placeholder="Enter Password" required>
 	  				</div>
 	  				<button type="submit" class="btn btn-primary btn-block">Login</button>
 	  			</div>

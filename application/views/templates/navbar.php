@@ -38,28 +38,33 @@
 		          <a class="dropdown-item" href="<?php echo base_url(); ?>categories/index">View All</a>
 		        </div>
 		      </li>
+			  <?php if($this->session->userdata('logged_in')) { ?>
+				  <li class="nav-item">
+			        <a class="nav-link" href="<?php echo base_url();?>shop/index/">Shop</a>
+			      </li>
+			  <?php } ?>
 			  <li class="nav-item">
-		        <a class="nav-link" href="<?php echo base_url();?>shop/index/">Shop</a>
-		      </li>
+				<a class="nav-link" href="<?php echo base_url();?>shop/stores/">Stores</a>
+			  </li>
 		    </ul>
 
 			<ul class="nav navbar-nav navbar-right">
 			  <?php if(!$this->session->userdata('logged_in'))
 			  { ?>
 				<li class="nav-item">
-					<a style="margin: 0 8px;" class="nav-link btn btn-primary text-white" href="<?php echo base_url(); ?>users/login">Login</a>
+					<a style="margin: 0 8px;" class="boot-buttons nav-link btn btn-primary text-white" href="<?php echo base_url(); ?>users/login">Login</a>
 				</li>
 				<li class="nav-item">
-					<a style="margin: 0 8px;" class="nav-link btn btn-outline-secondary bg-light text-info" href="<?php echo base_url(); ?>users/register">Register</a>
+					<a style="margin: 0 8px;" class="boot-buttons nav-link btn btn-outline-secondary bg-light text-info" href="<?php echo base_url(); ?>users/register">Register</a>
 				</li>
 			  <?php
 			  } ?>
 
 			  <?php if($this->session->userdata('logged_in'))
 			  { ?>
-				<li class="nav-item"><a class="nav-link btn btn-primary text-white" style="margin: 0 8px;" href="<?php echo base_url(); ?>articles/create">Create Article</a></li>
-				<li class="nav-item"><a class="nav-link btn btn-primary text-white" style="margin: 0 8px;" href="<?php echo base_url(); ?>categories/create">Create Category</a></li>
-				<li class="nav-item"><a class="nav-link btn btn-warning" style="margin: 0 8px;" href="<?php echo base_url(); ?>users/logout">Logout</a></li>
+				<li class="nav-item"><a class="boot-buttons nav-link btn btn-primary text-white" href="<?php echo base_url(); ?>articles/create">Create Article</a></li>
+				<li class="nav-item"><a class="boot-buttons nav-link btn btn-primary text-white" href="<?php echo base_url(); ?>categories/create">Create Category</a></li>
+				<li class="nav-item"><a class="boot-buttons nav-link btn btn-danger text-white" href="<?php echo base_url(); ?>users/logout">Logout</a></li>
 			  <?php
 			  } ?>
 			</ul>
@@ -105,7 +110,21 @@
 		<?php if($this->session->flashdata('category_created')){
 		  	echo "<p class='alert alert-success'>".$this->session->flashdata('category_created')."</p>";
 		} ?>
+
+		<?php if($this->session->flashdata('user_mobile')){
+		  	echo "<p class='alert alert-warning'>".$this->session->flashdata('user_mobile')."</p>";
+		} ?>
+
+		<?php if($this->session->flashdata('user_desk')){
+		  	echo "<p class='alert alert-success'>".$this->session->flashdata('user_desk')."</p>";
+		} ?>
  	</div>
+	<style media="screen">
+		.boot-buttons{
+			margin-bottom: 2% !important;
+			margin-right: 2%;
+		}
+	</style>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

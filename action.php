@@ -1,5 +1,8 @@
 <?php
  //action.php
+ unset($_SESSION);
+ session_start();
+
  if($_POST["action"] == "add")
  {
       if(isset($_SESSION['shopping_cart']))
@@ -51,7 +54,6 @@
       {
            $total = 0;
            $output .= '
-		   		<div class="container">
                 <h3>Order Details</h3>
                 <div class="table-responsive">
                      <table class="table table-bordered">
@@ -77,10 +79,9 @@
            $output .= '
                 <tr>
                      <td colspan="3" align="right">Total</td>
-                     <td>£ <span id="total_price">'.number_format($total, 2).'</span></td>
+                     <td>$ <span id="total_price">'.number_format($total, 2).'</span></td>
                 </tr>
            </table>
-		   </div>
            ';
       }
       return $output;
